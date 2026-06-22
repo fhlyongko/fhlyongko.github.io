@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yong-Jik Lee — Professor, Changwon National University</title>
+<style>
+  :root{
+    --ink:#1c1b19; --text:#2f2d2a; --muted:#6f6b64; --faint:#787469;
+    --line:#e7e3db; --line-soft:#f0ece4;
+    --bg:#fcfbf8; --card:#ffffff; --chip:#f3f0ea; --accent:#2b2b2b; --panel:#f6f3ed;
+    --maxw:840px; --navh:58px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo",
+           "Malgun Gothic","Noto Sans KR",Roboto,Helvetica,sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+    font-size:16.5px;line-height:1.72;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+
+  nav.top{position:sticky;top:0;z-index:30;background:rgba(252,251,248,.92);
+    backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .container{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;letter-spacing:-.01em;font-size:15.5px}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:20px;
+    padding-bottom:2px;border-bottom:2px solid transparent;transition:.15s}
+  nav.top .links a:hover{color:var(--ink)}
+  nav.top .links a.active{color:var(--ink);border-bottom-color:var(--accent)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:62px 0 36px}
+  .hero-row{display:flex;gap:30px;align-items:center}
+  .avatar{flex:0 0 auto;width:112px;height:112px;border-radius:50%;
+    background:linear-gradient(150deg,#3a3a3a,#1e1e1e);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:42px;letter-spacing:.02em}
+  .hero h1{font-family:var(--serif);font-size:40px;line-height:1.12;margin:0 0 4px;
+    color:var(--ink);letter-spacing:-.01em;font-weight:700}
+  .hero .kname{font-size:15px;color:var(--faint);margin:0 0 10px}
+  .hero .role{font-size:16.5px;color:var(--text);margin:0 0 3px;font-weight:500}
+  .hero .affil{font-size:14.5px;color:var(--muted);margin:0}
+  .contact-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px}
+  .contact-row a,.contact-row span{color:var(--muted);text-decoration:none}
+  .contact-row a:hover{color:var(--ink);text-decoration:underline}
+  @media(max-width:560px){.hero-row{flex-direction:column;text-align:center;gap:18px}
+    .contact-row{justify-content:center}.hero h1{font-size:32px}}
+
+  /* 하이라이트 지표 */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 4px}
+  .stat{background:var(--panel);border-radius:8px;padding:16px 16px}
+  .stat .n{font-family:var(--serif);font-size:25px;color:var(--ink);line-height:1}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.35}
+  @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  section.block{padding:40px 0;border-top:1px solid var(--line-soft);
+    scroll-margin-top:calc(var(--navh) + 12px)}
+  h2.h{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+    font-weight:700;margin:0 0 20px}
+  p{margin:0 0 15px}
+  .lead{font-size:17.5px;line-height:1.65}
+
+  /* 연구영역 */
+  .area{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+  .area:last-child{border-bottom:none;padding-bottom:0}
+  .area h3{font-size:17px;margin:0 0 6px;color:var(--ink);font-weight:650}
+  .area p{font-size:15px;color:var(--text);margin:0}
+  .tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+  .tags span{background:var(--chip);border:1px solid var(--line);color:var(--text);
+    padding:6px 13px;border-radius:20px;font-size:13.5px}
+
+  /* 출판 */
+  ol.pubs{list-style:none;counter-reset:p;margin:0;padding:0}
+  ol.pubs li{counter-increment:p;position:relative;padding:0 0 22px 44px;margin-bottom:22px;
+    border-bottom:1px solid var(--line-soft)}
+  ol.pubs li:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  ol.pubs li::before{content:counter(p);position:absolute;left:0;top:1px;
+    font-family:var(--serif);font-size:15px;color:var(--muted);
+    width:28px;height:28px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center}
+  .pub-title{font-weight:650;color:var(--ink);line-height:1.42;font-size:16.5px}
+  .pub-authors{font-size:14px;color:var(--muted);margin-top:4px}
+  .pub-authors b{color:var(--text);font-weight:700}
+  .pub-venue{font-size:14px;margin-top:4px;line-height:1.5}
+  .pub-venue em{color:var(--text);font-style:italic}
+  .pub-venue a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--faint)}
+  .pub-venue a:hover{color:var(--ink)}
+  .pub-sum{font-size:14px;color:var(--text);margin-top:7px;line-height:1.55}
+  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
+    padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:1px;
+    background:var(--accent);color:#fff;white-space:nowrap}
+  .badge.scopus{background:#3a3a3a}
+  .badge.ssci{background:#1f1f1f}
+  .badge.esci{background:#6a655c}
+  .badge.kci{background:#857f74}
+  .badge.review{background:#fff;color:var(--muted);border:1px solid var(--line)}
+
+  ul.act{list-style:none;margin:0;padding:0}
+  ul.act li{position:relative;padding-left:22px;margin-bottom:16px;font-size:15.5px;line-height:1.55}
+  ul.act li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;
+    border-radius:50%;background:var(--accent)}
+  ul.act li .t{color:var(--ink);font-weight:600}
+  ul.act li .d{color:var(--muted);font-size:14px}
+  ul.act li .yr{color:var(--faint);font-size:13px;margin-left:6px}
+
+  .collab{font-size:15px;color:var(--text)}
+  .collab b{color:var(--ink);font-weight:650}
+
+  footer{padding:32px 0 60px;color:var(--faint);font-size:13.5px;text-align:center;
+    border-top:1px solid var(--line-soft)}
+
+  @media print{
+    nav.top{display:none}
+    body{background:#fff;font-size:11pt;color:#000}
+    .avatar{background:#000}
+    .stat,.area,section.block,ol.pubs li{break-inside:avoid;page-break-inside:avoid}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="container">
+    <div class="brand">Yong-Jik Lee</div>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#pubs">Publications</a>
+      <a href="#review">Under Review</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-row">
+      <div class="avatar">YL</div>
+      <div>
+        <h1>Yong-Jik Lee</h1>
+        <p class="kname">이용직 · 國立昌原大學校</p>
+        <p class="role">Professor, College of Sarim Honors</p>
+        <p class="affil">Changwon National University, Changwon, Republic of Korea</p>
+        <div class="contact-row">
+          <a href="mailto:yongjiklee@changwon.ac.kr">yongjiklee@changwon.ac.kr</a>
+          <a href="mailto:fhlyongko@gmail.com">fhlyongko@gmail.com</a>
+          <span>Changwon, South Korea</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="n">8</div><div class="l">Peer-reviewed<br>articles (2026)</div></div>
+    <div class="stat"><div class="n">SSCI·Scopus</div><div class="l">ESCI &amp; KCI<br>indexed venues</div></div>
+    <div class="stat"><div class="n">NRF</div><div class="l">Early-Career<br>Researcher grantee</div></div>
+    <div class="stat"><div class="n">KR · CN</div><div class="l">International<br>collaboration</div></div>
+  </div>
+</div>
+
+<section class="block" id="about">
+  <div class="container">
+    <h2 class="h">About</h2>
+    <p class="lead">Yong-Jik Lee is a Professor in the College of Sarim Honors at Changwon National University, where his teaching and research focus on the intersection of artificial intelligence and education.</p>
+    <p>His scholarship investigates how AI is reshaping higher education and language learning — spanning AI literacy across academic disciplines, the integration of generative AI into English language teaching, English-Medium Instruction (EMI), and the cognitive foundations of multimedia learning. Drawing on both survey and experimental designs, his work asks how students and pre-service teachers come to understand, adopt, and learn effectively with emerging technologies, and what universities must do to support responsible and pedagogically meaningful AI use.</p>
+    <p>In 2026 he has published a sustained body of work in Scopus- and SSCI-indexed international journals, often co-authored with colleagues across Korean and Chinese universities, and was selected for the National Research Foundation of Korea (NRF) Early-Career Researcher Program. He is also active as an invited speaker on academic English writing and AI literacy at Korean universities.</p>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="container">
+    <h2 class="h">Research Areas</h2>
+
+    <div class="area">
+      <h3>AI Literacy in Higher Education</h3>
+      <p>How university students and pre-service teachers develop knowledge, attitudes, and competencies around AI — examined across academic disciplines, year levels, and majors, including international and trade-focused student populations.</p>
+    </div>
+    <div class="area">
+      <h3>Generative AI in Language Learning</h3>
+      <p>The use, perception, and pedagogical value of generative AI tools (e.g., ChatGPT, machine translation) in English as a Foreign Language settings, and the AI literacy instruction needed to support them.</p>
+    </div>
+    <div class="area">
+      <h3>English-Medium Instruction &amp; Academic Communication</h3>
+      <p>Cross-cultural and gendered patterns in student–faculty communication within EMI contexts, with attention to pragmatics, formality, and request strategies in academic correspondence.</p>
+    </div>
+    <div class="area">
+      <h3>Multimedia Learning &amp; Cognitive Load</h3>
+      <p>Experimental study of how working memory and contextual features such as elaborative and seductive details shape interest, cognitive load, and learning from educational video.</p>
+    </div>
+
+    <div class="tags">
+      <span>AI Literacy</span><span>Generative AI</span><span>EMI</span>
+      <span>TEFL / EFL</span><span>Technology Acceptance (TAM)</span>
+      <span>Pre-service Teacher Education</span><span>Cognitive Load</span>
+      <span>Higher Education</span>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="pubs">
+  <div class="container">
+    <h2 class="h">Selected Publications (2026)</h2>
+    <ol class="pubs">
+
+      <li>
+        <div class="pub-title">Cognitive Load and Working Memory in Multimedia Video Podcasts: Effects of Elaborative and Seductive Details</div>
+        <div class="pub-authors">Davis, R. O., <b>Lee, Y.-J.</b>, Vincent, J., &amp; Lee, J. H.</div>
+        <div class="pub-venue"><em>Journal of Intelligence</em>, 2026<span class="badge ssci">SSCI</span></div>
+        <div class="pub-sum">An experimental study of 62 university students testing how working memory and additive details (elaborative vs. seductive) influence interest, cognitive load, and learning from educational video podcasts.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Email Communication in English-Medium Instruction: Cultural and Gender Differences in Student Requests to Professors</div>
+        <div class="pub-authors">Sung, S.-e., Davis, R. O., Vincent, J., &amp; <b>Lee, Y.-J.</b></div>
+        <div class="pub-venue"><em>Education Sciences</em> (MDPI), 16, 2026<span class="badge scopus">Scopus</span></div>
+        <div class="pub-sum">Analysis of 113 advanced learners' English emails to Korean vs. international professors, revealing how culture and self-reported gender shape formality and request strategies in EMI settings.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Integrating Generative AI into English Learning: Insights from Korean University EFL Students</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, Davis, R. O., &amp; Choi, J.</div>
+        <div class="pub-venue"><em>The Journal of Asia TEFL</em>, 23(1), 128–137, 2026 &middot; <a href="https://doi.org/10.18823/asiatefl.2026.23.1.10.128">doi.org/10.18823/asiatefl.2026.23.1.10.128</a><span class="badge scopus">Scopus</span></div>
+        <div class="pub-sum">A survey of 73 undergraduates on their use and perception of generative AI (ChatGPT, Google Translate) in English learning, highlighting the need for structured AI literacy instruction.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Disciplinary Differences in University Students' AI Adoption: A Technology Acceptance Model Approach</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, &amp; Choi, H.-C.</div>
+        <div class="pub-venue"><em>International Journal of Information and Education Technology</em>, 16(6), 2026<span class="badge scopus">Scopus</span></div>
+        <div class="pub-sum">A pre/post-semester study of 108 students applying the Technology Acceptance Model to explain how academic discipline shapes AI acceptance and use.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Examining Artificial Intelligence (AI) Literacy Among First-Year Students in Korean Higher Education</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, &amp; Jeong, S.-H.</div>
+        <div class="pub-venue"><em>Journal of Curriculum and Teaching</em>, 15(2), 2026 &middot; <a href="https://doi.org/10.5430/jct.v15n2p284">doi.org/10.5430/jct.v15n2p284</a><span class="badge scopus">Scopus</span></div>
+        <div class="pub-sum">An examination of AI literacy levels among first-year students entering Korean higher education and its implications for foundational curriculum.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Generative AI Literacy Among Pre-service Teachers: Focusing on Physical Education Majors</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, &amp; Jeong, S.-H.</div>
+        <div class="pub-venue"><em>Journal of Education and e-Learning Research</em>, 13(2), 172–178, 2026 &middot; <a href="https://doi.org/10.20448/jeelr.v13i2.8661">doi.org/10.20448/jeelr.v13i2.8661</a><span class="badge scopus">Scopus</span></div>
+        <div class="pub-sum">A focused look at generative AI literacy among pre-service physical education teachers and its relevance to teacher preparation.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Understanding AI Education Perceptions and Teaching Efficacy Among Pre-service Teachers in Korea</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, &amp; Jeong, S.-H.</div>
+        <div class="pub-venue"><em>Journal of Education and Learning (EduLearn)</em>, 20(3), 1887–1896, 2026 &middot; <a href="https://doi.org/10.11591/edulearn.v20i3.25169">doi.org/10.11591/edulearn.v20i3.25169</a><span class="badge scopus">Scopus</span></div>
+        <div class="pub-sum">A study linking pre-service teachers' perceptions of AI education with their sense of teaching efficacy in Korean teacher-education programs.</div>
+      </li>
+
+      <li>
+        <div class="pub-title">Exploring AI Literacy Across Academic Disciplines: University Students' Knowledge, Attitudes, and Learning Challenges</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b> et al.</div>
+        <div class="pub-venue">KCI-indexed journal, 2026<span class="badge kci">KCI</span></div>
+        <div class="pub-sum">A disciplinary comparison of students' AI knowledge, attitudes, and the learning challenges they encounter across majors.</div>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<section class="block" id="review">
+  <div class="container">
+    <h2 class="h">Manuscripts Under Review</h2>
+    <ol class="pubs">
+      <li>
+        <div class="pub-title">Understanding Generative AI (GenAI) Literacy for International Students: Evidence from Korean Higher Education</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, Kim, J. H., &amp; Li, Y. <span style="color:var(--faint)">(Changwon National University · Shandong Women's University, China)</span></div>
+        <div class="pub-venue">Manuscript under review<span class="badge review">Under Review</span></div>
+      </li>
+      <li>
+        <div class="pub-title">Recognizing the Importance of AI Literacy for Students Majoring in International Trade</div>
+        <div class="pub-authors"><b>Lee, Y.-J.</b>, &amp; Kim, K.-H. <span style="color:var(--faint)">(Changwon National University)</span></div>
+        <div class="pub-venue">Manuscript under review<span class="badge review">Under Review</span></div>
+      </li>
+      <li>
+        <div class="pub-title">What Motivates University Students to Learn AI? The Role of Competency and Interest in Educational Demand</div>
+        <div class="pub-authors">Li, Y., <b>Lee, Y.-J.</b>, &amp; Choi, J. <span style="color:var(--faint)">(Shandong Women's University, China · Changwon National University)</span></div>
+        <div class="pub-venue">Manuscript under review<span class="badge review">Under Review</span></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="block" id="activities">
+  <div class="container">
+    <h2 class="h">Grants, Talks &amp; Service</h2>
+    <ul class="act">
+      <li><span class="t">National Research Foundation of Korea (NRF) — Early-Career Researcher Program</span> <span class="yr">2026</span><br><span class="d">Selected for competitive national research funding supporting early-career scholars.</span></li>
+      <li><span class="t">Invited Seminar — English Academic Writing</span> <span class="yr">2026</span><br><span class="d">BK21 graduate program, Pusan National University.</span></li>
+      <li><span class="t">Invited Lecture</span> <span class="yr">2026</span><br><span class="d">Pukyong National University.</span></li>
+      <li><span class="t">Conference Presentation</span> <span class="yr">2026</span><br><span class="d">Academic conference, Jeju.</span></li>
+      <li><span class="t">Journal Author &amp; Contributor</span><br><span class="d">Across SSCI, Scopus, ESCI, and KCI-indexed journals in English education and AI literacy.</span></li>
+    </ul>
+    <p class="collab" style="margin-top:22px"><b>Collaborators &amp; affiliations:</b> Robert O. Davis and Ji Hae Lee (Chonnam National University); Joseph Vincent and Seung-eun Sung (Hankuk University of Foreign Studies); Seung-Hoon Jeong (Woosuk University); Hyun-Cheol Choi (Chung-Ang University); Jung-in Choi, Jeong Hoon Kim, and Ki-Hwan Kim (Changwon National University); Yue Li (Shandong Women's University, China).</p>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="container">
+    <h2 class="h">Contact</h2>
+    <p>For research collaboration, manuscripts, invited talks, or graduate inquiries, please get in touch.</p>
+    <div class="contact-row">
+      <a href="mailto:yongjiklee@changwon.ac.kr">yongjiklee@changwon.ac.kr</a>
+      <a href="mailto:fhlyongko@gmail.com">fhlyongko@gmail.com</a>
+      <span>College of Sarim Honors, Changwon National University</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2026 Yong-Jik Lee · Professor, Changwon National University</div>
+</footer>
+
+<script>
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.block'));
+  var map = {};
+  document.querySelectorAll('nav.top .links a').forEach(function(a){
+    map[a.getAttribute('href').slice(1)] = a;
+  });
+  function spy(){
+    var cur = secs[0] ? secs[0].id : null;
+    secs.forEach(function(s){ if(s.getBoundingClientRect().top <= 90) cur = s.id; });
+    Object.keys(map).forEach(function(k){ map[k].classList.toggle('active', k===cur); });
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  window.addEventListener('load', spy);
+</script>
+
+</body>
+</html>
