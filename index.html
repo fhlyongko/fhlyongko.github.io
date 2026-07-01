@@ -107,11 +107,12 @@ h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.25;margin:0}
   <div class="wrap">
     <div class="brand">Yong-Jik Lee</div>
     <div class="nav">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#activities">Activities</a>
-      <a href="#contact">Contact</a>
+      <a class="active" href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="activities.html">Activities</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </nav>
@@ -123,8 +124,8 @@ h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.25;margin:0}
       <h1>Yong-Jik Lee</h1>
       <p class="lead">Professor at Changwon National University researching AI literacy, generative AI in English learning, English-Medium Instruction, and technology-supported higher education.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="#publications">View Publications</a>
-        <a class="btn gold" href="#research">Research Areas</a>
+        <a class="btn primary" href="publications.html">View Publications</a>
+        <a class="btn gold" href="research.html">Research Areas</a>
         <a class="btn" href="mailto:yongjiklee@changwon.ac.kr">Contact</a>
       </div>
     </div>
@@ -334,16 +335,5 @@ h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.25;margin:0}
 
 <footer class="footer">© 2026 Yong-Jik Lee · Professor, Changwon National University</footer>
 
-<script>
-const sections=[...document.querySelectorAll("main section")];
-const links=[...document.querySelectorAll(".nav a")];
-function updateNav(){
-  let current=sections[0]?.id;
-  sections.forEach(section=>{if(section.getBoundingClientRect().top<=92)current=section.id;});
-  links.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+current));
-}
-window.addEventListener("scroll",updateNav,{passive:true});
-window.addEventListener("load",updateNav);
-</script>
 </body>
 </html>
