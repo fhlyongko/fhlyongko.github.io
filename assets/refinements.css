@@ -1,0 +1,42 @@
+.hero {
+  min-height: min(650px, calc(100vh - 120px));
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-grid {
+    gap: 24px;
+    padding-block: 30px 36px;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .role {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+
+  .hero-summary {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  .profile-links {
+    margin-top: 18px;
+    gap: 12px;
+  }
+
+  .portrait-panel {
+    display: none;
+  }
+}
