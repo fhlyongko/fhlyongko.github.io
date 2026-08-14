@@ -72,7 +72,7 @@ button { font: inherit; }
 .signal { margin: 0 0 8px; color: #83adff; font-size: 10px; font-weight: 700; }
 h1 { margin: 0; color: #fff; font-size: clamp(40px, 5.2vw, 58px); line-height: 1; font-weight: 600; }
 .position { margin: 10px 0 0; color: #f3f3f3; font-size: 15px; font-weight: 500; line-height: 1.4; }
-.position.ko { margin-top: 4px; color: #aeb4be; font-size: 12px; }
+.profile-summary { max-width: 720px; margin: 8px 0 0; color: #bfc5ce; font-size: 13px; line-height: 1.6; }
 
 .keyword-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20px; border-top: 1px solid #39404a; border-left: 3px solid var(--blue); }
 .keyword-grid span { min-height: 34px; padding: 8px 10px; border-right: 1px solid #39404a; border-bottom: 1px solid #39404a; color: #d9dde4; font-size: 10px; }
@@ -175,6 +175,7 @@ h1 { margin: 0; color: #fff; font-size: clamp(40px, 5.2vw, 58px); line-height: 1
   .affiliation-mark { margin: 0; }
   h1 { font-size: 39px; }
   .position { font-size: 12px; }
+  .profile-summary { font-size: 11px; line-height: 1.5; }
   .keyword-grid { grid-template-columns: 1fr; }
   .evidence-strip, .contact-strip { display: none; }
   .dashboard-nav { grid-template-columns: repeat(3, 1fr) 62px; }
